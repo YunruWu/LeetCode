@@ -37,6 +37,23 @@ So, when the slow pointer and the fast pointer encounter in the cycle, we can de
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-        
+        if (!head || !head->next) return NULL;
+        ListNode* faster = head;
+        ListNode* slower = head;
+        ListNode* entry = head;
+
+        while (faster->next && faster->next->next) {
+        	faster = faster->next->next;
+        	slower = slower->next;
+        	if (slower == faster) {
+        		while (slower != entry) {
+        			entry = entry->next;
+        			slower = slower->next;
+        		}
+        		return entry;
+        	}
+        }
+
+        return NULL;
     }
 };
