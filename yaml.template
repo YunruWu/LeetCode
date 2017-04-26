@@ -1,39 +1,17 @@
-Type: "AWS::EC2::Instance"
-Properties: 
-  Affinity: String
-  AvailabilityZone: String
-  BlockDeviceMappings: 
-    - EC2 Block Device Mapping
-  DisableApiTermination: Boolean
-  EbsOptimized: Boolean
-  HostId: String
-  IamInstanceProfile: String
-  ImageId: String
-  InstanceInitiatedShutdownBehavior: String
-  InstanceType: String
-  Ipv6AddressCount: Integer
-  Ipv6Addresses:
-    - IPv6 Address Type
-  KernelId: String
-  KeyName: String
-  Monitoring: Boolean
-  NetworkInterfaces: 
-    - EC2 Network Interface"
-  PlacementGroupName: String
-  PrivateIpAddress: String
-  RamdiskId: String
-  SecurityGroupIds: 
-    - String
-  SecurityGroups: 
-    - String
-  SourceDestCheck: Boolean
-  SsmAssociations: 
-    - SSMAssociation
-  SubnetId: String
-  Tags: 
-    - Resource Tag
-  Tenancy: String
-  UserData: String
-  Volumes: 
-    - EC2 MountPoint
-  AdditionalInfo: String
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A sample template
+Resources:
+  MyEC2Instance: #An inline comment
+    Type: "AWS::EC2::Instance"
+    Properties: 
+      ImageId: "ami-2f726546" #Another comment -- This is a Linux AMI
+      InstanceType: t1.micro
+      KeyName: testkey
+      BlockDeviceMappings:
+        -
+          DeviceName: /dev/sdm
+          Ebs:
+            VolumeType: io1
+            Iops: 200
+            DeleteOnTermination: false
+            VolumeSize: 20
